@@ -2,6 +2,7 @@
 using UnityEngine.Networking;
 
 [RequireComponent(typeof(Player))]
+[RequireComponent(typeof(PlayerController))]
 public class PlayerSetup : NetworkBehaviour {
 
     [SerializeField]
@@ -35,6 +36,9 @@ public class PlayerSetup : NetworkBehaviour {
             SetLayerRecursively(playerGraphics, LayerMask.NameToLayer(dontDrawLayerName));
             playerUIInstance = Instantiate(playerUIPrefab);
             playerUIInstance.name = playerUIPrefab.name;
+
+            PlayerUI ui = playerUIInstance.GetComponent<PlayerUI>();
+            ui.SetController(GetComponent<PlayerController>());
         }
 
         GetComponent<Player>().Setup();

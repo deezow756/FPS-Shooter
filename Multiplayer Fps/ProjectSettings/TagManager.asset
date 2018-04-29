@@ -7,7 +7,6 @@ TagManager:
   - Ground
   - Obstacle
   - Fire
-  - UI
   layers:
   - Default
   - TransparentFX
@@ -21,7 +20,7 @@ TagManager:
   - RemotePlayer
   - DontDraw
   - Weapon
-  - 
+  - CollidableEnvironment
   - 
   - 
   - 

@@ -871,7 +871,7 @@ MonoBehaviour:
     Name: AK-47
     Damage: 5
     Range: 100
-    fireRate: 0
+    fireRate: 5
     graphics: {fileID: 1522013756397070, guid: d6b83df51cd449746a1bf56561240b52, type: 2}
 --- !u!114 &114502594754161384
 MonoBehaviour:
@@ -885,9 +885,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  lookSensitivity: 10
-  thrusterForce: 69999
-  jointSpring: 40
+  lookSensitivity: 5
+  thrusterForce: 1300
+  thrusterFuelBurnSpeed: 0.5
+  thrusterFuelRegenSpeed: 0.3
+  environmentMask:
+    serializedVersion: 2
+    m_Bits: 4096
+  jointSpring: 30
   maxForce: 40
 --- !u!114 &114637669529189562
 MonoBehaviour:
@@ -953,7 +958,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!153 &153261973454234452
 ConfigurableJoint:
