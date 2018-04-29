@@ -11,7 +11,7 @@ public class HealthUI : MonoBehaviour{
 
     public void SetDefaultHealthUI(int _amount)
     {
-        maxHealth = _amount;     
+        maxHealth = _amount;
         txtHealth.text = _amount.ToString() + "/" + _amount.ToString();
     }
 

@@ -12,6 +12,27 @@ public class Player : NetworkBehaviour {
         protected set { isDead = value; }
     }
 
+    public int CurrentHealth
+    {
+        get
+        {
+            return currentHealth;
+        }
+
+        set
+        {
+            currentHealth = value;
+            if (currentHealth < 0)
+            {
+                currentHealth = 0;
+            }
+            if (healthUI)
+            {
+                healthUI.UpdateHealthUI(currentHealth);
+            }
+        }
+    }
+
     [SerializeField]
     private int maxHealth = 100;
     [SyncVar]
@@ -26,7 +47,7 @@ public class Player : NetworkBehaviour {
 
     public void Setup()
     {
-        healthUI = playerUI.transform.GetComponentInChildren<HealthUI>();
+        healthUI = GameObject.FindGameObjectWithTag("UI").GetComponentInChildren<HealthUI>();
         wasEnabled = new bool[disableOnDeath.Length];
         for (int i = 0; i < wasEnabled.Length; i++)
         {
@@ -35,16 +56,16 @@ public class Player : NetworkBehaviour {
         healthUI.SetDefaultHealthUI(maxHealth);
         SetDefaults();
     }
+
     [ClientRpc]
     public void RpcTakeDamage(int _amount)
     {
         if (IsDead)
             return;
 
-        currentHealth -= _amount;
-        healthUI.UpdateHealthUI(currentHealth);
+        CurrentHealth -= _amount;
 
-        if (currentHealth <= 0)
+        if (CurrentHealth == 0)
         {
             Die();
         }
