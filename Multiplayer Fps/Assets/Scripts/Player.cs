@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
 using System.Collections;
-[RequireComponent(typeof(HealthUI))]
 public class Player : NetworkBehaviour {
 
     [SyncVar]
@@ -16,23 +15,28 @@ public class Player : NetworkBehaviour {
     private int maxHealth = 100;
     [SyncVar]
     private int currentHealth;
+    public int GetCurrentHealth()
+    {
+        return currentHealth;
+    }
+    public int GetMaxHealth()
+    {
+        return maxHealth;
+    }
     
     [SerializeField]
     private Behaviour[] disableOnDeath;
     private bool[] wasEnabled;
     [SerializeField]
     private Behaviour playerUI;
-    private HealthUI healthUI;
 
     public void Setup()
     {
-        healthUI = playerUI.transform.GetComponentInChildren<HealthUI>();
         wasEnabled = new bool[disableOnDeath.Length];
         for (int i = 0; i < wasEnabled.Length; i++)
         {
             wasEnabled[i] = disableOnDeath[i].enabled;
         }
-        healthUI.SetDefaultHealthUI(maxHealth);
         SetDefaults();
     }
     [ClientRpc]
@@ -42,7 +46,7 @@ public class Player : NetworkBehaviour {
             return;
 
         currentHealth -= _amount;
-        healthUI.UpdateHealthUI(currentHealth);
+        currentHealth = Mathf.Clamp(currentHealth, 0, 1);
 
         if (currentHealth <= 0)
         {

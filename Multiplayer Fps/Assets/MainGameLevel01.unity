@@ -975,7 +975,7 @@ Light:
     m_NearPlane: 0.2
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
-  m_Flare: {fileID: 0}
+  m_Flare: {fileID: 12100000, guid: 09ebe82dbd1113c3d000dc0b8d76c639, type: 2}
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
@@ -7275,7 +7275,7 @@ Prefab:
     - target: {fileID: 2300000, guid: 88bd3864cf0054892a28b21f3464d8f5, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: d67cf08569282495b9b0b750a0366fcf, type: 2}
+      objectReference: {fileID: 2100000, guid: afe69434f75177b44a8aac4fadf1c57a, type: 2}
     - target: {fileID: 100000, guid: 88bd3864cf0054892a28b21f3464d8f5, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295

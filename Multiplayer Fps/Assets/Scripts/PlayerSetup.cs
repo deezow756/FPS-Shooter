@@ -39,6 +39,7 @@ public class PlayerSetup : NetworkBehaviour {
 
             PlayerUI ui = playerUIInstance.GetComponent<PlayerUI>();
             ui.SetController(GetComponent<PlayerController>());
+            ui.SetPlayer(GetComponent<Player>());
         }
 
         GetComponent<Player>().Setup();
