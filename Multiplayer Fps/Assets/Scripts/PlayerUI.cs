@@ -38,7 +38,8 @@ public class PlayerUI : MonoBehaviour {
 
     void SetHealthAmount(int _amount, int _max)
     {
-        healthBarFill.localScale = new Vector3(_amount / 100, 1, 1);
-        healthText.text = _amount.ToString() + "/" + _max.ToString();
+        float _amountf = _amount;
+        healthBarFill.localScale = new Vector3(_amountf / 100, 1, 1);
+        healthText.text = _amount.ToString();
     }
 }

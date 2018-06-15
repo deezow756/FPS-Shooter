@@ -840,7 +840,10 @@ MonoBehaviour:
   disableOnDeath:
   - {fileID: 114502594754161384}
   - {fileID: 114710009865522096}
+  disableGameObjectsOnDeath: []
   playerUI: {fileID: 223356317735916340, guid: b5793f2180f39414baacb27e8af85c8f, type: 2}
+  deathEffect: {fileID: 1152352040469572, guid: c87546a9695f1bb42a24c278a1fadb4b,
+    type: 2}
 --- !u!114 &114456987870868476
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -884,8 +887,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5b521441b5b67848830628db5f91c54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  lookSensitivity: 5
+  speed: 8
+  lookSensitivity: 8
   thrusterForce: 1300
   thrusterFuelBurnSpeed: 0.5
   thrusterFuelRegenSpeed: 0.3

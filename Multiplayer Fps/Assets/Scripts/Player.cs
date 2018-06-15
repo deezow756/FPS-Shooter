@@ -27,8 +27,15 @@ public class Player : NetworkBehaviour {
     [SerializeField]
     private Behaviour[] disableOnDeath;
     private bool[] wasEnabled;
+
+    [SerializeField]
+    private GameObject[] disableGameObjectsOnDeath;
+
     [SerializeField]
     private Behaviour playerUI;
+
+    [SerializeField]
+    private GameObject deathEffect;
 
     public void Setup()
     {
@@ -39,6 +46,7 @@ public class Player : NetworkBehaviour {
         }
         SetDefaults();
     }
+
     [ClientRpc]
     public void RpcTakeDamage(int _amount)
     {
@@ -63,9 +71,17 @@ public class Player : NetworkBehaviour {
             disableOnDeath[i].enabled = false;
         }
 
+        for (int i = 0; i < disableGameObjectsOnDeath.Length; i++)
+        {
+            disableGameObjectsOnDeath[i].SetActive(false);
+        }
+
         Collider _col = GetComponent<Collider>();
         if (_col != null)
             _col.enabled = false;
+
+        GameObject _gfxIns = (GameObject)Instantiate(deathEffect, transform.position, Quaternion.identity);
+        Destroy(_gfxIns, 3f);
 
         StartCoroutine(Respawn());
     }  
@@ -88,6 +104,11 @@ public class Player : NetworkBehaviour {
         for (int i = 0; i < disableOnDeath.Length; i++)
         {
             disableOnDeath[i].enabled = wasEnabled[i];
+        }
+
+        for (int i = 0; i < disableGameObjectsOnDeath.Length; i++)
+        {
+            disableGameObjectsOnDeath[i].SetActive(true);
         }
 
         Collider _col = GetComponent<Collider>();
